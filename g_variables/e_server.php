@@ -16,6 +16,8 @@
             $noValue .= "❌ Age is age set <br />";
         }
     }
+
+    echo $_SERVER['REQUEST_METHOD'];
 ?>
 
 <!DOCTYPE html>
