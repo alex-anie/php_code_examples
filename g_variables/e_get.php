@@ -1,4 +1,6 @@
 <?php
+
+    // Example 1
     $users = [
         'alex' => [
             'name' => 'Alex Anie',
@@ -29,7 +31,43 @@
     }else {
         echo "<h1>No user selected.</h1>";
     }
-   
+
+    // Example 2
+    $products = [
+        ['name' => 'Smartphone', 'category' => 'electronics'],
+        ['name' => 'Laptop', 'category' => 'electronics'],
+        ['name' => 'T-Shirt', 'category' => 'fashion'],
+        ['name' => 'Novel - The Alchemist', 'category' => 'books'],
+        ['name' => 'Headphones', 'category' => 'electronics'],
+        ['name' => 'Jeans', 'category' => 'fashion'],
+    ];
+
+    // Check if a category is selected
+    if(isset($_GET['category'])){
+        $selectedCategory = strtolower(trim($_GET['category']));
+        $found = false;
+
+        echo "<h1>Products in '" .htmlspecialchars($selectedCategory). "'Category:</h1>";
+        echo "<ul>";
+                foreach($products as $product) {
+                    if(strtolower($product['category']) === $selectedCategory){
+                        echo "<li>" . htmlspecialchars($product['name']) ."</li>";
+                        $found = true;
+                    }
+                }
+
+                if(!$found){
+                    echo "<p>No products found in this category.</p>";
+                }
+            "</ul>";
+        }else {
+            echo "<h1>All Products:</h1>";
+            echo "<ul>";
+            foreach($products as $product){
+                echo "<li>" . htmlspecialchars($product['name']). "( " . htmlspecialchars($product['category']). " )</li>";
+            }
+            echo "</ul>";
+        }
 ?>
 
 <!DOCTYPE html>
@@ -41,6 +79,14 @@
     <link rel="stylesheet" href="./main.css" />
 </head>
 <body>
-   
+    <div>
+        <a href="e_get.php?user=alex">View Alex Profile</a>
+    </div>
+
+    <div>
+        <a href="e_get.php?user=sarah">View Sarah's Profile</a>
+    </div>
+
+    <hr />
 </body>
 </html>
